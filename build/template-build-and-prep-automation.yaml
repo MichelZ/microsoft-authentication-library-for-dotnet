@@ -29,7 +29,7 @@ steps:
 
 - task: CopyFiles@2
   displayName: 'Stage MSAL src'
-  condition: eq(parameters.PUBLISH_OUTPUT, true)
+  condition: and(succeeded(), eq('${{ parameters.PUBLISH_OUTPUT }}', true))
   inputs:
     SourceFolder: src\client
     Contents: '**\**.cs'
@@ -37,7 +37,7 @@ steps:
 
 - task: CopyFiles@2
   displayName: 'Stage MSAL src bin'
-  condition: eq(parameters.PUBLISH_OUTPUT, true)
+  condition: and(succeeded(), eq('${{ parameters.PUBLISH_OUTPUT }}', true))
   inputs:
     SourceFolder: src\client
     Contents: '**\bin\**\*'
@@ -45,7 +45,7 @@ steps:
 
 - task: CopyFiles@2
   displayName: 'Stage MSAL tests'
-  condition: eq(parameters.PUBLISH_OUTPUT, true)
+  condition: and(succeeded(), eq('${{ parameters.PUBLISH_OUTPUT }}', true))
   inputs:
     SourceFolder: tests
     Contents: |
@@ -57,7 +57,7 @@ steps:
 
 - task: CopyFiles@2
   displayName: 'Stage Device Authentication Tests'
-  condition: eq(parameters.PUBLISH_OUTPUT, true)
+  condition: and(succeeded(), eq('${{ parameters.PUBLISH_OUTPUT }}', true))
   inputs:
     SourceFolder: tests/Microsoft.Identity.Test.Integration.Win8
     Contents: '**/bin/**/*'
@@ -65,7 +65,7 @@ steps:
 
 - task: PublishPipelineArtifact@1
   displayName: 'Publish Artifact: drop'
-  condition: eq(parameters.PUBLISH_OUTPUT, true)
+  condition: and(succeeded(), eq('${{ parameters.PUBLISH_OUTPUT }}', true))
   inputs:
     targetPath: $(Build.artifactstagingdirectory)
     artifactName: drop
