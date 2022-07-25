@@ -43,6 +43,22 @@ steps:
     Contents: 'Microsoft.Identity**\bin\**\**'
     TargetFolder: '$(build.artifactstagingdirectory)/msalTests'
 
+- task: CopyFiles@2
+  displayName: 'Stage Device Authentication Tests'
+  inputs:
+    SourceFolder: tests/Microsoft.Identity.Test.Integration.Win8
+    Contents: '**/bin/**/*'
+    TargetFolder: '$(build.artifactstagingdirectory)/DeviceAuth'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: DeviceAuth'
+
+- task: PublishPipelineArtifact@1
+  displayName: 'Publish Artifact: DeviceAuth'
+  inputs:
+    targetPath: $(Build.artifactstagingdirectory)
+    artifactName: DeviceAuth
+
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
 
