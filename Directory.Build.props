@@ -10,10 +10,6 @@
     <IsPackable>false</IsPackable>    
   </PropertyGroup>
 
-  <PropertyGroup>
-    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
-  </PropertyGroup>
-
   <ItemGroup Label="For ContinuousIntegrationBuild support">
     <SourceRoot Include="$(MSBuildThisFileDirectory)/"/> <!-- defines repository top level dir-->
   </ItemGroup>
