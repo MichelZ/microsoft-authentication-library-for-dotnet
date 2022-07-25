@@ -41,12 +41,13 @@ steps:
     msbuildArgs: '/t:restore /p:RestoreUseStaticGraphEvaluation=true'
     platform: ${{ parameters.BuildPlatform }}
     configuration: ${{ parameters.BuildConfiguration }}
+    maximumCpuCount: true
 
 - task: VSBuild@1
   displayName: 'Build solution ${{ parameters.Solution }}'
   inputs:
     solution: ${{ parameters.Solution }}
-    msbuildArgs: '/p:RunCodeAnalysis=false /p:MsalClientSemVer=${{ parameters.MsalClientSemVer }} /p:SourceLinkCreate=true /p:ContinousIntegrationBuild=true'
+    msbuildArgs: '/p:RunCodeAnalysis=false /p:MsalClientSemVer=${{ parameters.MsalClientSemVer }} /p:SourceLinkCreate=true /p:ContinousIntegrationBuild=true /p:RestoreUseStaticGraphEvaluation=true'
     platform: ${{ parameters.BuildPlatform }}
     configuration: ${{ parameters.BuildConfiguration }}
     maximumCpuCount: true
