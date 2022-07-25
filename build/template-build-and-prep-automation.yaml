@@ -13,8 +13,6 @@ steps:
   displayName: 'Use .Net Core sdk 6.x'
   inputs:
     version: 6.x
-    includePreviewVersions: true
-
 
 # Nuget Restore and Build 
 - template: template-restore-build-libsandsamples.yaml
