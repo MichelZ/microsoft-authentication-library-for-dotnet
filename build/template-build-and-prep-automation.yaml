@@ -54,8 +54,6 @@ steps:
     Contents: '**/bin/**/*'
     TargetFolder: '$(build.artifactstagingdirectory)/DeviceAuth'
 
-
-
 - task: PublishPipelineArtifact@1
   displayName: 'Publish Artifact: drop'
   inputs:
