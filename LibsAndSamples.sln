@@ -101,6 +101,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XamarinDev", "tests\devapps
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pipelines", "pipelines", "{EA983957-DC2F-4D9E-A2E3-79ADEB5CEB26}"
 	ProjectSection(SolutionItems) = preProject
+		build\mize-template-build-and-run-all-tests.yaml = build\mize-template-build-and-run-all-tests.yaml
 		build\pipeline-ci.yaml = build\pipeline-ci.yaml
 		pipeline-mizetest.yaml = pipeline-mizetest.yaml
 		build\pipeline-perf-tests-automation.yaml = build\pipeline-perf-tests-automation.yaml
