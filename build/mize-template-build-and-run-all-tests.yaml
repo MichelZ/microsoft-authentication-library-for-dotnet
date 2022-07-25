@@ -13,9 +13,6 @@ jobs: #Build and stage projects
   steps:
   # Bootstrap the build
   - template: template-build-and-prep-automation.yaml
-    parameters:
-      MSAL_DESKTOP_ONLY_DEV: 'true'
-      PUBLISH_OUTPUT: true
   
 - job: 'BuildAndStageAllProjects'
   pool:
@@ -27,9 +24,6 @@ jobs: #Build and stage projects
   steps:
   # Bootstrap the build
   - template: template-build-and-prep-automation.yaml
-    parameters:
-      MSAL_DESKTOP_ONLY_DEV: ''
-      PUBLISH_OUTPUT: false
 
   #Desktop Unit + Integration Tests
 - job: 'RunDesktopTests'
