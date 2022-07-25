@@ -3,7 +3,7 @@ parameters:
 
 jobs: #Build and stage projects
 
-- job: 'BuildAndStageDesktopAndUnitTestProjects'
+- job: 'BuildAndStage'
   pool:
       vmImage: 'windows-2022'
       demands:
@@ -14,21 +14,10 @@ jobs: #Build and stage projects
   # Bootstrap the build
   - template: template-build-and-prep-automation.yaml
   
-- job: 'BuildAndStageAllProjects'
-  pool:
-      vmImage: 'windows-2022'
-      demands:
-      - msbuild
-      - visualstudio
-
-  steps:
-  # Bootstrap the build
-  - template: template-build-and-prep-automation.yaml
-
   #Desktop Unit + Integration Tests
 - job: 'RunDesktopTests'
   dependsOn:
-  - 'BuildAndStageDesktopAndUnitTestProjects'
+  - 'BuildAndStage'
   pool:
       vmImage: 'windows-2022'
       demands:
