@@ -45,3 +45,10 @@ steps:
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
+
+- task: PublishPipelineArtifact@1
+  displayName: 'Publish Artifact: drop'
+  inputs:
+    targetPath: $(Build.artifactstagingdirectory)
+    artifactName: drop
+
