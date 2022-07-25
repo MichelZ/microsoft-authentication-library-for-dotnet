@@ -30,7 +30,7 @@ steps:
 
 - task: NuGetCommand@2
   displayName: 'NuGet restore (nuget.exe) ${{ parameters.Solution }}'
-  enabled: false
+  enabled: true
   inputs:
     command: 'restore'
     restoreSolution: ${{ parameters.Solution }}
