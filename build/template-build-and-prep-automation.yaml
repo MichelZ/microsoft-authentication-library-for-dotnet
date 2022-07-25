@@ -40,7 +40,11 @@ steps:
   displayName: 'Stage MSAL tests'
   inputs:
     SourceFolder: tests
-    Contents: 'Microsoft.Identity**\bin\**\**'
+    Contents: |
+      Microsoft.Identity**\bin\**\**
+      !Microsoft.Identity*Common\**\*
+      !Microsoft.Identity*LabInfrastructure\**\*
+      !Microsoft.Identity*Performance\**\*
     TargetFolder: '$(build.artifactstagingdirectory)/msalTests'
 
 - task: CopyFiles@2
