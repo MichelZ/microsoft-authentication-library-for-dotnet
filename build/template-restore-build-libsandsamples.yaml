@@ -27,6 +27,12 @@ steps:
     custom: 'workload'
     arguments: 'restore .\src\client\Microsoft.Identity.Client\Microsoft.Identity.Client.csproj'
 
+- task: NuGetCommand@2
+  displayName: 'NuGet restore (nuget.exe) ${{ parameters.Solution }}'
+  inputs:
+    command: 'restore'
+    restoreSolution: ${{ parameters.Solution }}
+
 - task: VSBuild@1
   displayName: 'NuGet restore ${{ parameters.Solution }}'
   inputs:
