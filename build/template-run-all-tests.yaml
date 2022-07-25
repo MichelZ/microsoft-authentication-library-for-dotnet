@@ -6,8 +6,6 @@ parameters:
 
 steps:
 
-- template: template-install-keyvault-secrets.yaml
-
 # Run Unit Tests
 - template: template-run-unit-tests.yaml
   parameters:
