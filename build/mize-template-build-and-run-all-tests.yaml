@@ -13,7 +13,7 @@ jobs: #Build and stage projects
   steps:
   # Bootstrap the build
   - template: template-build-and-prep-automation.yaml
-  parameters:
+    parameters:
       MSAL_DESKTOP_ONLY_DEV: 'true'
       PUBLISH_OUTPUT: true
   
