@@ -6,9 +6,6 @@ parameters:
   BuildConfiguration: 'debug'
   MsalClientSemVer: '4.0.0-devopsbuild'
 
-variables:
-  NUGET_PACKAGES: $(Pipeline.Workspace)/.nuget/packages
-
 steps:
 - task: CmdLine@2
   displayName: 'Clear local NuGet cache'
@@ -19,7 +16,7 @@ steps:
   displayName: Cache
   inputs:
     key: 'nuget | "$(Agent.OS)" | **/packages.lock.json,!**/bin/**,!**/obj/**'
-    path: '$(NUGET_PACKAGES)'
+    path: '$(Pipeline.Workspace)/.nuget/packages'
     cacheHitVar: 'CACHE_RESTORED'
 
 #Restore workload with the .NET Core CLI task
