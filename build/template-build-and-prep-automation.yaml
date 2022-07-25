@@ -54,21 +54,10 @@ steps:
     Contents: '**/bin/**/*'
     TargetFolder: '$(build.artifactstagingdirectory)/DeviceAuth'
 
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact: DeviceAuth'
 
-- task: PublishPipelineArtifact@1
-  displayName: 'Publish Artifact: DeviceAuth'
-  inputs:
-    targetPath: $(Build.artifactstagingdirectory)
-    artifactName: DeviceAuth
-
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact: drop'
 
 - task: PublishPipelineArtifact@1
   displayName: 'Publish Artifact: drop'
   inputs:
     targetPath: $(Build.artifactstagingdirectory)
     artifactName: drop
-
