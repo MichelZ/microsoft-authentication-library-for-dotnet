@@ -5,6 +5,12 @@ steps:
   inputs:
     version: 3.x
 
+# Unit tests require .NET 5.x
+- task: UseDotNet@2
+  displayName: 'Use .Net Core SDK 5.x'
+  inputs:
+    version: 5.x
+
 - task: UseDotNet@2
   displayName: 'Use .Net Core SDK 6.x'
   inputs:
