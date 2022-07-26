@@ -15,6 +15,7 @@ steps:
     rerunMaxAttempts: '3'
     runInParallel: false
     codeCoverageEnabled: true
+    vsTestVersion: 'toolsInstaller'
 
 - task: VSTest@2
   displayName: 'Run integration tests (.NET Core)'

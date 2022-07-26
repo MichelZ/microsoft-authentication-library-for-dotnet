@@ -16,6 +16,10 @@ steps:
   inputs:
     version: 6.x
 
+- task: VisualStudioTestPlatformInstaller@1
+  inputs:
+    versionSelector: 'latestStable' # Required when packageFeedSelector == NugetOrg || PackageFeedSelector == CustomFeed# Options: latestPreRelease, latestStable, specificVersion
+
 - task: DownloadPipelineArtifact@2
   displayName: 'Download Drop'
   inputs:
