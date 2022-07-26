@@ -7,14 +7,12 @@ steps:
   displayName: 'Use .Net Core SDK 3.x'
   inputs:
     version: 3.x
-    
+ 
 # Use the latest .NET SDK
 - task: UseDotNet@2
-  displayName: 'Use .Net Core sdk 6.x'
+  displayName: 'Use .Net Core SDK 6.x'
   inputs:
     version: 6.x
-    includePreviewVersions: true
-
 
 # Nuget Restore and Build 
 - template: template-restore-build-libsandsamples.yaml
@@ -23,19 +21,6 @@ steps:
     BuildConfiguration: '$(BuildConfiguration)'
     MsalClientSemVer: $(MsalClientSemVer)
     Solution: 'LibsAndSamples.sln'
-
-- task: DownloadSecureFile@1
-  displayName: 'Download Xamarin Ui Test Tools'
-  inputs:
-    secureFile: 'test-cloud.exe'
-
-- task: CopyFiles@2
-  displayName: 'Stage Xamarin Ui Test Tools'
-  inputs:
-    SourceFolder: '$(Agent.TempDirectory)'
-    Contents: 'test-cloud.exe'
-    TargetFolder: '$(build.artifactstagingdirectory)'
-    flattenFolders: true
 
 - task: CopyFiles@2
   displayName: 'Stage MSAL src'
@@ -55,8 +40,29 @@ steps:
   displayName: 'Stage MSAL tests'
   inputs:
     SourceFolder: tests
-    Contents: 'Microsoft.Identity**\bin\**\**'
+    Contents: |
+      Microsoft.Identity**\bin\**\**
+      !Microsoft.Identity*Common\**\*
+      !Microsoft.Identity*LabInfrastructure\**\*
+      !Microsoft.Identity*Performance\**\*
     TargetFolder: '$(build.artifactstagingdirectory)/msalTests'
 
-- task: PublishBuildArtifacts@1
+- task: CopyFiles@2
+  displayName: 'Stage CacheCompat tests'
+  inputs:
+    SourceFolder: tests\CacheCompat
+    Contents: '**\bin\**\**'
+    TargetFolder: '$(build.artifactstagingdirectory)/cacheCompatTests'
+
+- task: CopyFiles@2
+  displayName: 'Stage Device Authentication Tests'
+  inputs:
+    SourceFolder: tests/Microsoft.Identity.Test.Integration.Win8
+    Contents: '**/bin/**/*'
+    TargetFolder: '$(build.artifactstagingdirectory)/DeviceAuth'
+
+- task: PublishPipelineArtifact@1
   displayName: 'Publish Artifact: drop'
+  inputs:
+    targetPath: $(Build.artifactstagingdirectory)
+    artifactName: drop

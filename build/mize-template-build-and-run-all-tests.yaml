@@ -1,0 +1,52 @@
+parameters:
+  DataFileDirectory: 'Debug'
+
+jobs: #Build and stage projects
+
+- job: 'BuildAndStage'
+  pool:
+      vmImage: 'windows-2022'
+      demands:
+      - msbuild
+      - visualstudio
+
+  steps:
+  # Bootstrap the build
+  - template: template-build-and-prep-automation.yaml
+  
+  #Desktop Unit + Integration Tests
+- job: 'RunDesktopTests'
+  dependsOn:
+  - 'BuildAndStage'
+  pool:
+      vmImage: 'windows-2022'
+      demands:
+      - msbuild
+      - visualstudio
+  variables:
+      runCodesignValidationInjection: false
+
+  steps:
+  - template: template-desktop-unit-and-automation.yaml
+
+  
+# BUILD AND RUN CACHE COMPAT TESTS
+- job: 'BuildAndRunCacheCompatTests'
+  strategy:
+    parallel: 5
+  dependsOn:
+    - 'BuildAndStage'
+  pool:
+      vmImage: 'windows-2022'
+      demands:
+      - msbuild
+      - visualstudio
+  variables:
+      runCodesignValidationInjection: false
+
+  steps:
+  - template: template-cachecompat-automation.yaml
+    parameters:
+      BuildPlatform: '$(BuildPlatform)'
+      BuildConfiguration: '$(BuildConfiguration)'
+      BuildSolution: 'LibsAndSamples.sln'
