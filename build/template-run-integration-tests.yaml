@@ -11,6 +11,7 @@ steps:
     testAssemblyVer2: '**\Microsoft.Identity.Test.Integration.netfx\bin\**\net4*\Microsoft.Identity.Test.Integration.NetFx.dll'
     searchFolder: '$(System.DefaultWorkingDirectory)'
     rerunFailedTests: true
+    pathtoCustomTestAdapters: 'C:\temp'
     rerunMaxAttempts: '3'
     runInParallel: false
     codeCoverageEnabled: true
