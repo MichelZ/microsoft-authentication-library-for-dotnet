@@ -18,7 +18,6 @@ steps:
     failOnMinTestsNotRun: true
     minimumExpectedTests: '1'
     pathtoCustomTestAdapters: 'C:\temp'
-    vsTestVersion: 'toolsInstaller'
 
 - task: VSTest@2
   displayName: 'Run unit tests (.NET CORE)'
