@@ -11,12 +11,10 @@ steps:
     testAssemblyVer2: '**\Microsoft.Identity.Test.Integration.netfx\bin\**\net4*\Microsoft.Identity.Test.Integration.NetFx.dll'
     searchFolder: '$(System.DefaultWorkingDirectory)'
     rerunFailedTests: true
-    pathtoCustomTestAdapters: 'C:\temp'
     rerunMaxAttempts: '3'
     runInParallel: false
     codeCoverageEnabled: true
-    vsTestVersion: 'toolsInstaller'
-
+    
 - task: VSTest@2
   displayName: 'Run integration tests (.NET Core)'
   condition: and(succeeded(), eq(variables['RunTests'], 'true'))
